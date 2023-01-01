@@ -2,17 +2,15 @@
 
 namespace Modules\Dashboard\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Routing\Controller;
-use Nwidart\Modules\Facades\Module as ModuleFacade;
-use Nwidart\Modules\Laravel\Module;
+use Modules\Blog\Models\Blog;
+use Modules\Blog\Models\BlogCategory;
 
 class DashboardController extends Controller
 {
-    private Module $_module;
-
     /**
      * Create a new controller instance.
      */
@@ -22,12 +20,9 @@ class DashboardController extends Controller
         private string $_title = 'Dashboard',
     )
     {
-        $moduleName = explode("\\", static ::class)[1];
-
-        $this->_module = ModuleFacade::find($moduleName);
+        parent::__construct();
 
         view()->share([
-            'module' => $this->_module,
             'route' => $this->_route,
             'title' => $this->_title
         ]);
@@ -43,7 +38,9 @@ class DashboardController extends Controller
         $data = [
             'breadcrumbs' => (object)[
                 'Dashboard' => null
-            ]
+            ],
+            'countBlogCategory' => BlogCategory::count(),
+            'countBlog' => Blog::count(),
         ];
 
         return view($this->_module->getLowerName() . '::' . $this->_routeView . __FUNCTION__, $data);

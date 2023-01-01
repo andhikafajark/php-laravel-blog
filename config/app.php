@@ -206,7 +206,8 @@ return [
         /*
          * Modules Service Providers...
          */
-        Modules\Auth\Providers\AuthServiceProvider::class,
+//        Modules\Auth\Providers\AuthServiceProvider::class,
+//        Modules\Blog\Providers\BlogServiceProvider::class,
     ],
 
     /*

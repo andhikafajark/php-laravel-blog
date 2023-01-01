@@ -44,7 +44,7 @@
                     apiCall({
                         url,
                         success: function (response) {
-                            if (response?.code === 200) {
+                            if (response?.success) {
                                 Swal.fire({
                                     icon: 'success',
                                     title: response?.message,

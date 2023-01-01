@@ -3,6 +3,7 @@
 namespace Modules\Auth\Http\Controllers;
 
 use App\Helpers\Log;
+use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
@@ -10,16 +11,12 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use Modules\Auth\Http\Requests\LoginRequest;
-use Nwidart\Modules\Facades\Module as ModuleFacade;
-use Nwidart\Modules\Laravel\Module;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
-    private Module $_module;
 
     /**
      * Create a new controller instance.
@@ -30,12 +27,9 @@ class AuthController extends Controller
         private string $_title = 'Auth',
     )
     {
-        $moduleName = explode("\\", static ::class)[1];
-
-        $this->_module = ModuleFacade::find($moduleName);
+        parent::__construct();
 
         view()->share([
-            'module' => $this->_module,
             'route' => $this->_route,
             'title' => $this->_title
         ]);

@@ -23,6 +23,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('admin'),
                 'name' => 'Admin',
                 'is_active' => true,
+                'created_by' => 'e976eba4-6853-4405-9549-a503ab645981',
                 'created_at' => Carbon::now()
             ],
         ]);
