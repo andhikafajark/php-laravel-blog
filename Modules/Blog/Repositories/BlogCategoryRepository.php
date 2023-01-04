@@ -4,7 +4,7 @@ namespace Modules\Blog\Repositories;
 
 interface BlogCategoryRepository
 {
-    public function getAll($filterDomain);
+    public function getAll($filterDomain = null);
 
     public function create($blogCategoryDomain);
 

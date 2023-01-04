@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Impl;
+namespace App\Repositories\EloquentImpl;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -16,9 +16,9 @@ abstract class Repository
      * Get all the resource from DB.
      *
      * @param $filterDomain
-     * @return array
+     * @return mixed
      */
-    public function getAll($filterDomain): array
+    public function getAll($filterDomain = null)
     {
         return $this->model->get();
     }
@@ -39,6 +39,7 @@ abstract class Repository
      *
      * @param $domain
      * @return mixed
+     * @throws ModelNotFoundException
      */
     public function getOne($domain)
     {
@@ -50,6 +51,7 @@ abstract class Repository
      *
      * @param  $domain
      * @return mixed
+     * @throws ModelNotFoundException
      */
     public function update($domain)
     {

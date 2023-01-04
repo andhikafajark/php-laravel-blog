@@ -4,7 +4,7 @@ namespace Modules\Blog\Services;
 
 interface BlogService
 {
-    public function getAll($indexRequest);
+    public function getAll($indexRequest = null);
 
     public function create($createRequest);
 

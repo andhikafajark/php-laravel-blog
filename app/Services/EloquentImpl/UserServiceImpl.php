@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Impl;
+namespace App\Services\EloquentImpl;
 
 use App\Domain\FilterDomain;
 use App\Domain\UserDomain;

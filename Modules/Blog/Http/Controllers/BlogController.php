@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Modules\Blog\Http\Requests\Blog\CreateRequest;
 use Modules\Blog\Http\Requests\Blog\UpdateRequest;
 use Modules\Blog\Models\Blog;
-use Modules\Blog\Models\BlogCategory;
+use Modules\Blog\Services\BlogCategoryService;
 use Modules\Blog\Services\BlogService;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -26,6 +26,7 @@ class BlogController extends Controller
      */
     public function __construct(
         private BlogService $blogService,
+        private BlogCategoryService $blogCategoryService,
         private string      $_route = 'blog.',
         private string      $_routeView = 'blog.',
         private string      $_title = 'Blog',
@@ -65,7 +66,7 @@ class BlogController extends Controller
             ]
         ];
 
-        return view($this->_module->getLowerName() . '::' . $this->_routeView . '.' . __FUNCTION__, $data);
+        return view($this->_module->getLowerName() . '::' . $this->_routeView . __FUNCTION__, $data);
     }
 
     /**
@@ -82,10 +83,10 @@ class BlogController extends Controller
                 'Blog' => $this->_route . 'index',
                 'Create' => null
             ],
-            'blogCategories' => BlogCategory::all()
+            'blogCategories' => $this->blogCategoryService->getAll()
         ];
 
-        return view($this->_module->getLowerName() . '::' . $this->_routeView . '.' . __FUNCTION__, $data);
+        return view($this->_module->getLowerName() . '::' . $this->_routeView . __FUNCTION__, $data);
     }
 
     /**
@@ -136,10 +137,10 @@ class BlogController extends Controller
                 'Edit' => null
             ],
             'blog' => $blog,
-            'blogCategories' => BlogCategory::all()
+            'blogCategories' => $this->blogCategoryService->getAll()
         ];
 
-        return view($this->_module->getLowerName() . '::' . $this->_routeView . '.' . __FUNCTION__, $data);
+        return view($this->_module->getLowerName() . '::' . $this->_routeView . __FUNCTION__, $data);
     }
 
     /**

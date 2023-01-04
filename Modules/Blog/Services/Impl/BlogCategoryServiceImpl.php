@@ -2,73 +2,18 @@
 
 namespace Modules\Blog\Services\Impl;
 
+use App\Services\EloquentImpl\Service;
 use Exception;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Modules\Blog\Repositories\BlogCategoryRepository;
 use Modules\Blog\Services\BlogCategoryService;
 use Yajra\DataTables\DataTables;
 
-class BlogCategoryServiceImpl implements BlogCategoryService
+class BlogCategoryServiceImpl extends Service implements BlogCategoryService
 {
     public function __construct(private BlogCategoryRepository $blogCategoryRepository)
     {
-    }
-
-    /**
-     * Get all the resource.
-     *
-     * @param $indexRequest
-     * @return array
-     */
-    public function getAll($indexRequest): array
-    {
-        return $this->blogCategoryRepository->getAll($indexRequest);
-    }
-
-    /**
-     * Create a resource.
-     *
-     * @param $createRequest
-     */
-    public function create($createRequest)
-    {
-        return $this->blogCategoryRepository->create($createRequest);
-    }
-
-    /**
-     * Get specific resource.
-     *
-     * @param $showRequest
-     * @throws ModelNotFoundException
-     */
-    public function getOne($showRequest)
-    {
-        return $this->blogCategoryRepository->getOne($showRequest);
-    }
-
-
-    /**
-     * Update specific resource.
-     *
-     * @param $updateRequest
-     * @throws ModelNotFoundException
-     */
-    public function update($updateRequest)
-    {
-        return $this->blogCategoryRepository->update($updateRequest);
-    }
-
-    /**
-     * Delete specific resource.
-     *
-     * @param $deleteRequest
-     * @return bool
-     * @throws ModelNotFoundException
-     */
-    public function delete($deleteRequest): bool
-    {
-        return $this->blogCategoryRepository->delete($deleteRequest);
+        parent::__construct($blogCategoryRepository);
     }
 
     /**

@@ -1,5 +1,6 @@
 {
     "Auth": true,
     "Dashboard": true,
-    "Blog": true
+    "Blog": true,
+    "Pages": true
 }

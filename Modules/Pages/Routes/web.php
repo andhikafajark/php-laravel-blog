@@ -1,9 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Modules\Auth\Http\Controllers\AuthController;
-use Modules\Pages\Http\Controllers\PagesController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,12 +11,10 @@ use Modules\Pages\Http\Controllers\PagesController;
 |
 */
 
-Route::get('/', [PagesController::class, 'index'])->name('/');
+use Illuminate\Support\Facades\Route;
+use Modules\Pages\Http\Controllers\PagesController;
 
-//Route::get('/test/blog', function () {
-//    return view('test');
-//});
-//
-//Route::get('/test/post', function () {
-//    return view('welcome');
-//});
+// Pages
+Route::name('pages.')->group(function () {
+    Route::get('/blog/{blog:slug}', [PagesController::class, 'blog'])->name('blog');
+});

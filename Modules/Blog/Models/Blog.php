@@ -2,10 +2,13 @@
 
 namespace Modules\Blog\Models;
 
+use App\Models\CourseCategory;
+use App\Models\User;
 use App\Traits\ByUser;
 use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Blog extends Model
 {
@@ -27,5 +30,15 @@ class Blog extends Model
     {
         $this->attributes['title'] = $value;
         $this->attributes['slug'] = str($value)->slug();
+    }
+
+    public function creator(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function blogCategory(): BelongsTo
+    {
+        return $this->belongsTo(BlogCategory::class);
     }
 }

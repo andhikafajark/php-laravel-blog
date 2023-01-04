@@ -2,7 +2,7 @@
 
 namespace Modules\Blog\Repositories\EloquentImpl;
 
-use App\Repositories\Impl\Repository;
+use App\Repositories\EloquentImpl\Repository;
 use Modules\Blog\Models\Blog;
 use Modules\Blog\Repositories\BlogRepository;
 
