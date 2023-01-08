@@ -2,7 +2,7 @@
 
 namespace Modules\Blog\Models;
 
-use App\Models\CourseCategory;
+use App\Models\File;
 use App\Models\User;
 use App\Traits\ByUser;
 use App\Traits\Uuid;
@@ -40,5 +40,10 @@ class Blog extends Model
     public function blogCategory(): BelongsTo
     {
         return $this->belongsTo(BlogCategory::class);
+    }
+
+    public function headlineImage(): BelongsTo
+    {
+        return $this->belongsTo(File::class, 'headline_image_id');
     }
 }

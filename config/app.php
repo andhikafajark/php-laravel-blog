@@ -202,6 +202,8 @@ return [
         /*
          * Dependency Injection Service Providers...
          */
+        App\Providers\UserServiceProvider::class,
+        App\Providers\FileServiceProvider::class,
 
         /*
          * Modules Service Providers...

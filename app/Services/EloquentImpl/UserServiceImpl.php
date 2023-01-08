@@ -2,99 +2,33 @@
 
 namespace App\Services\EloquentImpl;
 
-use App\Domain\FilterDomain;
-use App\Domain\UserDomain;
-use App\DTO\Request\DeleteRequest;
-use App\DTO\Request\IndexRequest;
-use App\DTO\Request\ShowRequest;
-use App\DTO\Request\User\CreateRequest;
-use App\DTO\Request\User\UpdateRequest;
-use App\DTO\Response\User\CreateResponse;
-use App\DTO\Response\User\ShowResponse;
-use App\DTO\Response\User\UpdateResponse;
 use App\Repositories\UserRepository;
 use App\Services\UserService;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Exception;
+use Illuminate\Http\JsonResponse;
+use Yajra\DataTables\DataTables;
 
-class UserServiceImpl implements UserService
+class UserServiceImpl extends Service implements UserService
 {
     public function __construct(private UserRepository $userRepository)
     {
+        parent::__construct($this->userRepository);
     }
 
     /**
      * Get all the resource.
      *
-     * @param IndexRequest $indexRequest
-     * @return array
+     * @param $datatableRequest
+     * @param array $options
+     * @return JsonResponse
+     * @throws Exception
      */
-    public function getAll(IndexRequest $indexRequest): array
+    public function getDatatable($datatableRequest, $options = [])
     {
-        $filterDomain = new FilterDomain($indexRequest->toArray());
+        $query = $this->userRepository->query();
 
-        return $this->userRepository->getAll($filterDomain);
-    }
-
-    /**
-     * Create a resource.
-     *
-     * @param CreateRequest $createRequest
-     * @return CreateResponse
-     */
-    public function create(CreateRequest $createRequest): CreateResponse
-    {
-        $userDomain = new UserDomain($createRequest->toArray());
-
-        $userDomain = $this->userRepository->create($userDomain);
-
-        return new CreateResponse($userDomain->toArray());
-    }
-
-    /**
-     * Get specific resource.
-     *
-     * @param ShowRequest $showRequest
-     * @return ShowResponse
-     * @throws ModelNotFoundException
-     */
-    public function getOne(ShowRequest $showRequest): ShowResponse
-    {
-        $userDomain = new UserDomain($showRequest->toArray());
-        $filterDomain = new FilterDomain($showRequest->toArray());
-
-        $userDomain = $this->userRepository->getOne($userDomain, $filterDomain);
-
-        return new ShowResponse($userDomain->toArray());
-    }
-
-
-    /**
-     * Update specific resource.
-     *
-     * @param UpdateRequest $updateRequest
-     * @return UpdateResponse
-     * @throws ModelNotFoundException
-     */
-    public function update(UpdateRequest $updateRequest): UpdateResponse
-    {
-        $userDomain = new UserDomain($updateRequest->toArray());
-
-        $userDomain = $this->userRepository->update($userDomain);
-
-        return new UpdateResponse($userDomain->toArray());
-    }
-
-    /**
-     * Delete specific resource.
-     *
-     * @param DeleteRequest $deleteRequest
-     * @return bool
-     * @throws ModelNotFoundException
-     */
-    public function delete(DeleteRequest $deleteRequest): bool
-    {
-        $userDomain = new UserDomain($deleteRequest->toArray());
-
-        return $this->userRepository->delete($userDomain);
+        return DataTables::of($query)
+            ->addIndexColumn()
+            ->toJson();
     }
 }

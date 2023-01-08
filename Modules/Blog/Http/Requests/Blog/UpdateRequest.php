@@ -29,6 +29,7 @@ class UpdateRequest extends FormRequest
             'blog_category_id' => 'bail|required|string|exists:blog_categories,id',
             'title' => $this->input('title') !== $blog->title ? 'bail|required|string|max:255|unique:blogs' : '',
             'content' => 'bail|required|string',
+            'headline_image' => 'bail|nullable|image',
             'is_active' => 'bail|required|boolean'
         ];
     }

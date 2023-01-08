@@ -12,15 +12,14 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('blogs', function (Blueprint $table) {
+        Schema::create('files', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('blog_category_id')->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
-            $table->string('title')->unique();
-            $table->string('slug')->unique();
-            $table->longText('content');
-            $table->uuid('headline_image_id')->nullable();
-            $table->foreign('headline_image_id')->references('id')->on('files')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->boolean('is_active')->default(false);
+            $table->string('original_name');
+            $table->string('hash_name');
+            $table->string('path')->nullable();
+            $table->string('extension');
+            $table->string('mime_type');
+            $table->unsignedBigInteger('size');
             $table->uuid('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->uuid('updated_by')->nullable();
@@ -39,6 +38,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('blogs');
+        Schema::dropIfExists('files');
     }
 };

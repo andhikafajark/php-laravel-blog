@@ -136,7 +136,7 @@ class BlogController extends Controller
                 'Blog Category' => $this->_route . 'index',
                 'Edit' => null
             ],
-            'blog' => $blog,
+            'blog' => $blog->with(['headlineImage'])->findOrFail($blog->id),
             'blogCategories' => $this->blogCategoryService->getAll()
         ];
 

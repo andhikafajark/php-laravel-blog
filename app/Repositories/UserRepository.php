@@ -2,18 +2,17 @@
 
 namespace App\Repositories;
 
-use App\Domain\FilterDomain;
-use App\Domain\UserDomain;
-
 interface UserRepository
 {
-    public function getAll(FilterDomain $filterDomain): array;
+    public function getAll($filterDomain = null);
 
-    public function create(UserDomain $userDomain): UserDomain;
+    public function create($blogDomain);
 
-    public function getOne(UserDomain $userDomain, ?FilterDomain $filterDomain = null): UserDomain;
+    public function getOne($blogDomain);
 
-    public function update(UserDomain $userDomain): UserDomain;
+    public function update($blogDomain);
 
-    public function delete(UserDomain $userDomain): bool;
+    public function delete($blogDomain): bool;
+
+    public function query();
 }

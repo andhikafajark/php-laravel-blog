@@ -19,6 +19,7 @@
             <thead>
             <tr>
                 <th>No</th>
+                <th>Headline</th>
                 <th>Title</th>
                 <th>Active</th>
                 <th>Action</th>
@@ -58,6 +59,7 @@
                 },
                 columns: [
                     {data: 'DT_RowIndex', orderable: false, searchable: false, className: 'dt-center'},
+                    {data: 'headline_image', orderable: false, searchable: false},
                     {data: 'title'},
                     {data: 'is_active', searchable: false},
                     {data: 'action', orderable: false, searchable: false}

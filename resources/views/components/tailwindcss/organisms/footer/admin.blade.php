@@ -1,4 +1,3 @@
-</body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.19/dist/sweetalert2.all.min.js"></script>
@@ -26,6 +25,29 @@
             const targetElement = $(this).siblings(`#${target}`)
 
             targetElement.toggleClass('hidden')
+        })
+
+        $('body').on('change', 'input[type="file"]', function (e) {
+            const imagePreviewElement = $(e.target).siblings('[data-type="image-preview"]')
+
+            if (!e.target?.files?.length) {
+                return imagePreviewElement
+                    .removeClass('border mt-3 hidden')
+                    .attr('src', '')
+            }
+
+            const mimeType = e.target.files[0].type
+
+            if (mimeType.split('/')[0] !== 'image') {
+                return imagePreviewElement
+                    .removeClass('border mt-3 hidden')
+                    .attr('src', '')
+            }
+
+            return imagePreviewElement
+                .addClass('border mt-3')
+                .attr('src', URL.createObjectURL(e.target.files[0]))
+                .removeClass('hidden')
         })
 
         $('#logout').on('click', function (e) {
@@ -151,4 +173,5 @@
 
 @stack('scripts')
 
+</body>
 </html>
