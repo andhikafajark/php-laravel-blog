@@ -14,16 +14,16 @@ return new class extends Migration {
     {
         Schema::create('blog_categories', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('title')->unique();
-            $table->string('slug')->unique();
+            $table->string('title')->comment('Unique');
+            $table->string('slug')->comment('Unique');
             $table->uuid('created_by')->nullable();
-            $table->foreign('created_by')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('created_by')->references('id')->on('users')->cascadeOnUpdate()->nullOnDelete();
             $table->uuid('updated_by')->nullable();
-            $table->foreign('updated_by')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
-//            $table->uuid('deleted_by')->nullable();
-//            $table->foreign('deleted_by')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('updated_by')->references('id')->on('users')->cascadeOnUpdate()->nullOnDelete();
+            $table->uuid('deleted_by')->nullable();
+            $table->foreign('deleted_by')->references('id')->on('users')->cascadeOnUpdate()->nullOnDelete();
             $table->timestamps();
-//            $table->softDeletes();
+            $table->softDeletes();
         });
     }
 

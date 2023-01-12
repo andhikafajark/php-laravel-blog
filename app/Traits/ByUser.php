@@ -16,6 +16,7 @@ trait ByUser
 
         static::deleting(function ($model) {
             $model->deleted_by = auth()->id();
+            $model->save();
         });
     }
 }

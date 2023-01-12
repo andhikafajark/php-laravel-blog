@@ -15,20 +15,20 @@ return new class extends Migration {
         Schema::create('blogs', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('blog_category_id')->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
-            $table->string('title')->unique();
-            $table->string('slug')->unique();
+            $table->string('title')->comment('Unique');
+            $table->string('slug')->comment('Unique');
             $table->longText('content');
             $table->uuid('headline_image_id')->nullable();
-            $table->foreign('headline_image_id')->references('id')->on('files')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('headline_image_id')->references('id')->on('files')->cascadeOnUpdate()->nullOnDelete();
             $table->boolean('is_active')->default(false);
             $table->uuid('created_by')->nullable();
-            $table->foreign('created_by')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('created_by')->references('id')->on('users')->cascadeOnUpdate()->nullOnDelete();
             $table->uuid('updated_by')->nullable();
-            $table->foreign('updated_by')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
-//            $table->uuid('deleted_by')->nullable();
-//            $table->foreign('deleted_by')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('updated_by')->references('id')->on('users')->cascadeOnUpdate()->nullOnDelete();
+            $table->uuid('deleted_by')->nullable();
+            $table->foreign('deleted_by')->references('id')->on('users')->cascadeOnUpdate()->nullOnDelete();
             $table->timestamps();
-//            $table->softDeletes();
+            $table->softDeletes();
         });
     }
 

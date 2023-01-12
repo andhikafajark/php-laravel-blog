@@ -24,7 +24,7 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'bail|required|string|max:255|unique:blog_categories'
+            'title' => 'bail|required|string|max:255|unique:blog_categories,title,NULL,id,deleted_at,NULL'
         ];
     }
 }

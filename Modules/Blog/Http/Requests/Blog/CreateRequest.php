@@ -3,6 +3,7 @@
 namespace Modules\Blog\Http\Requests\Blog;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CreateRequest extends FormRequest
 {
@@ -24,8 +25,8 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'blog_category_id' => 'bail|required|string|exists:blog_categories,id',
-            'title' => 'bail|required|string|max:255|unique:blogs',
+            'blog_category_id' => 'bail|required|string|exists:blog_categories,id,deleted_at,NULL',
+            'title' => 'bail|required|string|max:255|unique:blogs,title,NULL,id,deleted_at,NULL',
             'content' => 'bail|required|string',
             'headline_image' => 'bail|required|image',
             'is_active' => 'bail|required|boolean'

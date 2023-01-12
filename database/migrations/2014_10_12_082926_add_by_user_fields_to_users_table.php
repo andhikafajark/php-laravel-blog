@@ -14,11 +14,11 @@ return new class extends Migration {
     {
         Schema::table('users', function (Blueprint $table) {
             $table->uuid('created_by')->nullable();
-            $table->foreign('created_by')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('created_by')->references('id')->on('users')->cascadeOnUpdate()->nullOnDelete();
             $table->uuid('updated_by')->nullable();
-            $table->foreign('updated_by')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
-//            $table->uuid('deleted_by')->nullable();
-//            $table->foreign('deleted_by')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('updated_by')->references('id')->on('users')->cascadeOnUpdate()->nullOnDelete();
+            $table->uuid('deleted_by')->nullable();
+            $table->foreign('deleted_by')->references('id')->on('users')->cascadeOnUpdate()->nullOnDelete();
         });
     }
 
@@ -32,7 +32,7 @@ return new class extends Migration {
         Schema::table('users', function (Blueprint $table) {
             $table->dropConstrainedForeignId('created_by');
             $table->dropConstrainedForeignId('updated_by');
-//            $table->dropConstrainedForeignId('deleted_by');
+            $table->dropConstrainedForeignId('deleted_by');
         });
     }
 };

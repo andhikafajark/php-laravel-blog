@@ -26,7 +26,7 @@ class UpdateRequest extends FormRequest
         $blogCategory = $this->route('blog_category');
 
         return [
-            'title' => $this->input('title') !== $blogCategory->title ? 'bail|required|string|max:255|unique:blog_categories' : ''
+            'title' => $this->input('title') !== $blogCategory->title ? 'bail|required|string|max:255|unique:blog_categories,title,NULL,id,deleted_at,NULL' : ''
         ];
     }
 }
