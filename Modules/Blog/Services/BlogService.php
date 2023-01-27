@@ -14,5 +14,7 @@ interface BlogService
 
     public function delete($deleteRequest): bool;
 
+    public function getAllWithPagination($indexRequest = null);
+
     public function getDatatable($datatableRequest, $options = []);
 }

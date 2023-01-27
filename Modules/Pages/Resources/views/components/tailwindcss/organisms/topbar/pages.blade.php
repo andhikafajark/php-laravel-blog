@@ -24,7 +24,7 @@
 
             @forelse($blogCategories as $item)
 
-                <a href="{{ $item->slug ?? '' }}"
+                <a href="{{ route('/', ['category' => $item->slug ?? '']) }}"
                    class="hover:bg-gray-400 rounded py-2 px-4 mx-2">{{ $item->title ?? '' }}</a>
 
             @empty

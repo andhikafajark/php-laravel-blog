@@ -85,4 +85,15 @@ abstract class Repository
     {
         return $this->model->newQuery();
     }
+
+    /**
+     * Get all with pagination the resource from DB.
+     *
+     * @param $filterDomain
+     * @return mixed
+     */
+    public function getAllWithPagination($filterDomain = null)
+    {
+        return $this->model->paginate($filterDomain['limit'] ?? 5);
+    }
 }

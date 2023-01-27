@@ -15,4 +15,6 @@ interface BlogRepository
     public function delete($blogDomain): bool;
 
     public function query();
+
+    public function getAllWithPagination($filterDomain = null);
 }

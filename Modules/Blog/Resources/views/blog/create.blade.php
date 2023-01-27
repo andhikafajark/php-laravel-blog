@@ -92,6 +92,7 @@
                                     timer: 1500
                                 })
 
+                                $(form).find('[data-type="image-preview"]').removeClass('border mt-3 hidden').attr('src', '')
                                 $(form).trigger('reset')
                             }
                         },

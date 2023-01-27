@@ -18,11 +18,11 @@ class PagesController extends Controller
      * Create a new controller instance.
      */
     public function __construct(
-        private BlogService $blogService,
+        private BlogService         $blogService,
         private BlogCategoryService $blogCategoryService,
-        private string      $_route = 'pages.',
-        private string      $_routeView = '',
-        private string      $_title = '',
+        private string              $_route = 'pages.',
+        private string              $_routeView = '',
+        private string              $_title = '',
     )
     {
         parent::__construct();
@@ -47,6 +47,16 @@ class PagesController extends Controller
             'title' => 'Home'
         ];
 
+        $indexRequest = [
+            'limit' => 5
+        ];
+
+        if ($category = $request->input('category')) {
+            $indexRequest['category'] = $category;
+        }
+
+        $data['blogs'] = $this->blogService->getAllWithPagination($indexRequest);
+
         return view($this->_module->getLowerName() . '::' . $this->_routeView . __FUNCTION__, $data);
     }
 
@@ -63,7 +73,9 @@ class PagesController extends Controller
 
         $data = [
             'title' => 'Blog',
-            'blog' => $blog
+            'blog' => $blog,
+            'previous' => Blog::where('created_at', '<', $blog->created_at)->latest('created_at')->first(),
+            'next' => Blog::where('created_at', '>', $blog->created_at)->oldest('created_at')->first(),
         ];
 
         return view($this->_module->getLowerName() . '::' . $this->_routeView . __FUNCTION__, $data);

@@ -12,4 +12,37 @@ class BlogRepositoryImpl extends Repository implements BlogRepository
     {
         parent::__construct($blog);
     }
+
+    /**
+     * Get all the resource from DB.
+     *
+     * @param $filterDomain
+     * @return mixed
+     */
+    public function getAll($filterDomain = null)
+    {
+        return $this->model
+            ->when(!empty($filterDomain['category']), function ($query) use ($filterDomain) {
+                $query->whereHas('blogCategory', function ($query) use ($filterDomain) {
+                    $query->where('slug', $filterDomain['category']);
+                });
+            })->get();
+    }
+
+    /**
+     * Get all with pagination the resource from DB.
+     *
+     * @param $filterDomain
+     * @return mixed
+     */
+    public function getAllWithPagination($filterDomain = null)
+    {
+        return $this->model
+            ->when(!empty($filterDomain['category']), function ($query) use ($filterDomain) {
+                $query->whereHas('blogCategory', function ($query) use ($filterDomain) {
+                    $query->where('slug', $filterDomain['category']);
+                });
+            })->latest('created_at')
+            ->paginate($filterDomain['limit'] ?? 5);
+    }
 }

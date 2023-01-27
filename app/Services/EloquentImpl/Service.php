@@ -69,4 +69,15 @@ abstract class Service
     {
         return $this->repository->delete($deleteRequest);
     }
+
+    /**
+     * Get all the resource.
+     *
+     * @param $indexRequest
+     * @return mixed
+     */
+    public function getAllWithPagination($indexRequest = null)
+    {
+        return $this->repository->getAllWithPagination($indexRequest);
+    }
 }
