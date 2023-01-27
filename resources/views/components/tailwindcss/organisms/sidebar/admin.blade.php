@@ -25,7 +25,52 @@
             </li>
             <li class="mb-6">
                 <div class="flex w-full justify-between text-gray-400 hover:text-gray-300 cursor-pointer items-center"
-                     aria-controls="menu-dropdown" data-collapse-toggle="dropdown-example">
+                     aria-controls="menu-dropdown" data-collapse-toggle="dropdown-menu-reference">
+                    <button class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-stack" width="18"
+                             height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z"/>
+                            <polyline points="12 4 4 8 12 12 20 8 12 4"/>
+                            <polyline points="4 12 12 16 20 12"/>
+                            <polyline points="4 16 12 20 20 16"/>
+                        </svg>
+                        <span class="text-sm ml-2">Reference</span>
+                    </button>
+                    <div class="flex gap-2">
+                        {{--                        <div--}}
+                        {{--                            class="py-1 px-3 bg-gray-600 rounded text-gray-300 flex items-center justify-center text-xs">--}}
+                        {{--                            8--}}
+                        {{--                        </div>--}}
+                        <svg class="w-6 h-6 transition duration-300 -rotate-90" fill="currentColor" viewBox="0 0 20 20"
+                             xmlns="http://www.w3.org/2000/svg" aria-controls="menu-dropdown-icon">
+                            <path fill-rule="evenodd"
+                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                  clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                </div>
+                <ul id="dropdown-menu-reference" class="flex flex-col gap-3 pt-3 ml-5 hidden">
+                    <li class="flex w-full justify-between text-gray-400 hover:text-gray-300 items-center">
+                        <a href="{{ route('category.index') }}" class="flex items-center w-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-compass"
+                                 width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                            <span class="text-sm ml-2">Category</span>
+                        </a>
+                        {{--                        <div--}}
+                        {{--                            class="py-1 px-3 bg-gray-600 rounded text-gray-300 flex items-center justify-center text-xs">--}}
+                        {{--                            8--}}
+                        {{--                        </div>--}}
+                    </li>
+                </ul>
+            </li>
+            <li class="mb-6">
+                <div class="flex w-full justify-between text-gray-400 hover:text-gray-300 cursor-pointer items-center"
+                     aria-controls="menu-dropdown" data-collapse-toggle="dropdown-menu-blog">
                     <button class="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-stack" width="18"
                              height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
@@ -50,7 +95,7 @@
                         </svg>
                     </div>
                 </div>
-                <ul id="dropdown-example" class="flex flex-col gap-3 pt-3 ml-5 hidden">
+                <ul id="dropdown-menu-blog" class="flex flex-col gap-3 pt-3 ml-5 hidden">
                     <li class="flex w-full justify-between text-gray-400 hover:text-gray-300 items-center">
                         <a href="{{ route('blog.index') }}" class="flex items-center w-full">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-compass"
@@ -144,7 +189,52 @@
             </li>
             <li class="mb-6">
                 <div class="flex w-full justify-between text-gray-400 hover:text-gray-300 cursor-pointer items-center"
-                     aria-controls="menu-dropdown" data-collapse-toggle="dropdown-example">
+                     aria-controls="menu-dropdown" data-collapse-toggle="dropdown-menu-reference">
+                    <button class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-stack" width="18"
+                             height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z"/>
+                            <polyline points="12 4 4 8 12 12 20 8 12 4"/>
+                            <polyline points="4 12 12 16 20 12"/>
+                            <polyline points="4 16 12 20 20 16"/>
+                        </svg>
+                        <span class="text-sm ml-2">Reference</span>
+                    </button>
+                    <div class="flex gap-2">
+                        {{--                        <div--}}
+                        {{--                            class="py-1 px-3 bg-gray-600 rounded text-gray-300 flex items-center justify-center text-xs">--}}
+                        {{--                            8--}}
+                        {{--                        </div>--}}
+                        <svg class="w-6 h-6 transition duration-300 -rotate-90" fill="currentColor" viewBox="0 0 20 20"
+                             xmlns="http://www.w3.org/2000/svg" aria-controls="menu-dropdown-icon">
+                            <path fill-rule="evenodd"
+                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                  clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                </div>
+                <ul id="dropdown-menu-reference" class="flex flex-col gap-3 pt-3 ml-5 hidden">
+                    <li class="flex w-full justify-between text-gray-400 hover:text-gray-300 items-center">
+                        <a href="{{ route('category.index') }}" class="flex items-center w-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-compass"
+                                 width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                            <span class="text-sm ml-2">Category</span>
+                        </a>
+                        {{--                        <div--}}
+                        {{--                            class="py-1 px-3 bg-gray-600 rounded text-gray-300 flex items-center justify-center text-xs">--}}
+                        {{--                            8--}}
+                        {{--                        </div>--}}
+                    </li>
+                </ul>
+            </li>
+            <li class="mb-6">
+                <div class="flex w-full justify-between text-gray-400 hover:text-gray-300 cursor-pointer items-center"
+                     aria-controls="menu-dropdown" data-collapse-toggle="dropdown-menu-blog">
                     <button class="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-stack" width="18"
                              height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
@@ -169,7 +259,7 @@
                         </svg>
                     </div>
                 </div>
-                <ul id="dropdown-example" class="flex flex-col gap-3 pt-3 ml-5 hidden">
+                <ul id="dropdown-menu-blog" class="flex flex-col gap-3 pt-3 ml-5 hidden">
                     <li class="flex w-full justify-between text-gray-400 hover:text-gray-300 items-center">
                         <a href="{{ route('blog.index') }}" class="flex items-center w-full">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-compass"
