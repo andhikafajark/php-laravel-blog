@@ -26,7 +26,8 @@ class UpdateRequest extends FormRequest
         $blog = $this->route('blog');
 
         return [
-            'blog_category_id' => 'bail|required|string|exists:blog_categories,id,deleted_at,NULL',
+            'categories' => 'required|array|min:1',
+            'categories.*' => 'required|string|distinct|exists:categories,id,deleted_at,NULL',
             'title' => $this->input('title') !== $blog->title ? 'bail|required|string|max:255|unique:blogs,title,NULL,id,deleted_at,NULL' : '',
             'content' => 'bail|required|string',
             'headline_image' => 'bail|nullable|image',

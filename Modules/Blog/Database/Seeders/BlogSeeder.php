@@ -15,18 +15,21 @@ class BlogSeeder extends Seeder
      */
     public function run(): void
     {
-        Blog::insert([
-            [
-                'id' => 'e976eba4-6853-4405-9549-a503ab645981',
-                'blog_category_id' => 'e976eba4-6853-4405-9549-a503ab645981',
-                'title' => 'Test Title',
-                'slug' => str('Test Title')->slug(),
-                'content' => 'Test Content',
-                'headline_image_id' => 'e976eba4-6853-4405-9549-a503ab645981',
-                'is_active' => true,
-                'created_by' => 'e976eba4-6853-4405-9549-a503ab645981',
-                'created_at' => Carbon::now()
-            ]
-        ]);
+        Blog::create([
+            'id' => 'e976eba4-6853-4405-9549-a503ab645981',
+            'title' => 'Test Title',
+            'slug' => str('Test Title')->slug(),
+            'content' => 'Test Content',
+            'headline_image_id' => 'e976eba4-6853-4405-9549-a503ab645981',
+            'is_active' => true,
+            'created_by' => 'e976eba4-6853-4405-9549-a503ab645981',
+            'created_at' => Carbon::now()
+        ])->categories()
+            ->sync(array_fill_keys([
+                'e976eba4-6853-4405-9549-a503ab645981',
+                'e976eba4-6853-4405-9549-a503ab645982'
+            ], [
+                'created_by' => 'e976eba4-6853-4405-9549-a503ab645981'
+            ]));
     }
 }

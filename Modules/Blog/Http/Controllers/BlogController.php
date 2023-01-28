@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\DB;
 use Modules\Blog\Http\Requests\Blog\CreateRequest;
 use Modules\Blog\Http\Requests\Blog\UpdateRequest;
 use Modules\Blog\Models\Blog;
-use Modules\Blog\Services\BlogCategoryService;
 use Modules\Blog\Services\BlogService;
+use Modules\Reference\Services\CategoryService;
 use Symfony\Component\HttpFoundation\Response;
 
 class BlogController extends Controller
@@ -25,11 +25,11 @@ class BlogController extends Controller
      * Create a new controller instance.
      */
     public function __construct(
-        private BlogService $blogService,
-        private BlogCategoryService $blogCategoryService,
-        private string      $_route = 'blog.',
-        private string      $_routeView = 'blog.',
-        private string      $_title = 'Blog',
+        private BlogService     $blogService,
+        private CategoryService $categoryService,
+        private string          $_route = 'blog.',
+        private string          $_routeView = 'blog.',
+        private string          $_title = 'Blog',
     )
     {
         parent::__construct();
@@ -83,7 +83,11 @@ class BlogController extends Controller
                 'Blog' => $this->_route . 'index',
                 'Create' => null
             ],
-            'blogCategories' => $this->blogCategoryService->getAll()
+            'categories' => $this->categoryService->getAll([
+                'where' => [
+                    'type' => 'blog'
+                ]
+            ])
         ];
 
         return view($this->_module->getLowerName() . '::' . $this->_routeView . __FUNCTION__, $data);
@@ -136,8 +140,12 @@ class BlogController extends Controller
                 'Blog Category' => $this->_route . 'index',
                 'Edit' => null
             ],
-            'blog' => $blog->with(['headlineImage'])->findOrFail($blog->id),
-            'blogCategories' => $this->blogCategoryService->getAll()
+            'blog' => $blog->with(['categories', 'headlineImage'])->findOrFail($blog->id),
+            'categories' => $this->categoryService->getAll([
+                'where' => [
+                    'type' => 'blog'
+                ]
+            ])
         ];
 
         return view($this->_module->getLowerName() . '::' . $this->_routeView . __FUNCTION__, $data);

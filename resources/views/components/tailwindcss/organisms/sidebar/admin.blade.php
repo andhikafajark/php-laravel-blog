@@ -111,21 +111,21 @@
 {{--                            8--}}
 {{--                        </div>--}}
                     </li>
-                    <li class="flex w-full justify-between text-gray-400 hover:text-gray-300 items-center">
-                        <a href="{{ route('blog-category.index') }}" class="flex items-center w-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-compass"
-                                 width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>
-                            <span class="text-sm ml-2">Blog Category</span>
-                        </a>
+{{--                    <li class="flex w-full justify-between text-gray-400 hover:text-gray-300 items-center">--}}
+{{--                        <a href="{{ route('blog-category.index') }}" class="flex items-center w-full">--}}
+{{--                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-compass"--}}
+{{--                                 width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"--}}
+{{--                                 fill="none" stroke-linecap="round" stroke-linejoin="round">--}}
+{{--                                <path stroke="none" d="M0 0h24v24H0z"></path>--}}
+{{--                                <circle cx="12" cy="12" r="3"></circle>--}}
+{{--                            </svg>--}}
+{{--                            <span class="text-sm ml-2">Blog Category</span>--}}
+{{--                        </a>--}}
 {{--                        <div--}}
 {{--                            class="py-1 px-3 bg-gray-600 rounded text-gray-300 flex items-center justify-center text-xs">--}}
 {{--                            8--}}
 {{--                        </div>--}}
-                    </li>
+{{--                    </li>--}}
                 </ul>
             </li>
         </ul>
@@ -275,21 +275,21 @@
 {{--                            8--}}
 {{--                        </div>--}}
                     </li>
-                    <li class="flex w-full justify-between text-gray-400 hover:text-gray-300 items-center">
-                        <a href="{{ route('blog-category.index') }}" class="flex items-center w-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-compass"
-                                 width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>
-                            <span class="text-sm ml-2">Blog Category</span>
-                        </a>
+{{--                    <li class="flex w-full justify-between text-gray-400 hover:text-gray-300 items-center">--}}
+{{--                        <a href="{{ route('blog-category.index') }}" class="flex items-center w-full">--}}
+{{--                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-compass"--}}
+{{--                                 width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"--}}
+{{--                                 fill="none" stroke-linecap="round" stroke-linejoin="round">--}}
+{{--                                <path stroke="none" d="M0 0h24v24H0z"></path>--}}
+{{--                                <circle cx="12" cy="12" r="3"></circle>--}}
+{{--                            </svg>--}}
+{{--                            <span class="text-sm ml-2">Blog Category</span>--}}
+{{--                        </a>--}}
 {{--                        <div--}}
 {{--                            class="py-1 px-3 bg-gray-600 rounded text-gray-300 flex items-center justify-center text-xs">--}}
 {{--                            8--}}
 {{--                        </div>--}}
-                    </li>
+{{--                    </li>--}}
                 </ul>
             </li>
         </ul>

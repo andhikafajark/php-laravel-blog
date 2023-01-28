@@ -14,7 +14,6 @@ return new class extends Migration {
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('blog_category_id')->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
             $table->string('title')->comment('Unique');
             $table->string('slug')->comment('Unique');
             $table->longText('content');

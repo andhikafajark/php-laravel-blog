@@ -7,6 +7,7 @@ use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Blog\Models\Blog;
 
 class Category extends Model
 {
@@ -28,5 +29,13 @@ class Category extends Model
     {
         $this->attributes['title'] = $value;
         $this->attributes['slug'] = str($value)->slug();
+    }
+
+    /**
+     * Get all of the blogs that are assigned this category.
+     */
+    public function blogs()
+    {
+        return $this->morphedByMany(Blog::class, 'categorizable')->withTimestamps();
     }
 }

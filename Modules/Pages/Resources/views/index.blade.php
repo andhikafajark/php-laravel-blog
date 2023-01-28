@@ -16,7 +16,15 @@
                             class="max-h-[500px] block rounded-lg mx-auto hover:opacity-75"/>
                     </a>
                     <div class=" bg-white flex flex-col justify-start p-6">
-                        <a href="#" class="text-blue-700 text-sm font-bold uppercase pb-4">Technology</a>
+                        <div class="flex gap-2 mb-3">
+
+                            @forelse($item->categories as $category)
+
+                                <a href="{{ route('/', ['category' => $category->slug]) }}" class="bg-sky-300 text-sm font-bold capitalize rounded-xl px-3 py-1">{{ $category->title }}</a>
+
+                            @empty @endforelse
+
+                        </div>
                         <a href="{{ route('pages.blog', $item) }}"
                            class="text-3xl font-bold hover:text-gray-700 pb-4">{{ $item->title ?? '' }}</a>
                         <p class="text-sm pb-3">

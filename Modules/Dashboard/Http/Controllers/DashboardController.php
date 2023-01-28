@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Modules\Blog\Models\Blog;
 use Modules\Blog\Models\BlogCategory;
+use Modules\Reference\Models\Category;
 
 class DashboardController extends Controller
 {
@@ -39,7 +40,7 @@ class DashboardController extends Controller
             'breadcrumbs' => (object)[
                 'Dashboard' => null
             ],
-            'countBlogCategory' => BlogCategory::count(),
+            'countBlogCategory' => Category::where('type', 'blog')->count(),
             'countBlog' => Blog::count(),
         ];
 

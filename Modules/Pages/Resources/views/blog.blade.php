@@ -12,8 +12,15 @@
                     src="{{ $blog->headlineImage && Storage::exists($blog->headlineImage->path . $blog->headlineImage->hash_name) ? asset(Storage::url($blog->headlineImage->path . $blog->headlineImage->hash_name)) : '' }}"
                     class="max-h-[500px] block rounded-lg mx-auto"/>
                 <div class="bg-white flex flex-col justify-start p-6">
-                    <a href="#"
-                       class="text-blue-700 text-sm font-bold uppercase pb-4">{{ $blog->blogCategory->title ?? '' }}</a>
+                    <div class="flex gap-2 mb-3">
+
+                        @forelse($blog->categories as $category)
+
+                            <a href="{{ route('/', ['category' => $category->slug]) }}" class="bg-sky-300 text-sm font-bold capitalize rounded-xl px-3 py-1">{{ $category->title }}</a>
+
+                        @empty @endforelse
+
+                    </div>
                     <p class="text-3xl font-bold hover:text-gray-700 pb-4">{{ $blog->title ?? '' }}</p>
                     <p class="text-sm pb-8">
                         By <a href="#" class="font-semibold hover:text-gray-800">{{ $blog->creator->name ?? '' }}</a>,

@@ -1,10 +1,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.19/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     $(document).ready(function () {
+        globalInit()
         globalHandler()
     })
+
+    function globalInit() {
+        initSelect2()
+    }
+
+    function initSelect2(element = '.select2', options = {}) {
+        $(element).select2(options);
+    }
 
     function globalHandler() {
         $('#toogleSideBar').on('click', function () {

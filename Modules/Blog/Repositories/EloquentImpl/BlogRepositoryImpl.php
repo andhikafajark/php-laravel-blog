@@ -23,7 +23,7 @@ class BlogRepositoryImpl extends Repository implements BlogRepository
     {
         return $this->model
             ->when(!empty($filterDomain['category']), function ($query) use ($filterDomain) {
-                $query->whereHas('blogCategory', function ($query) use ($filterDomain) {
+                $query->whereHas('categories', function ($query) use ($filterDomain) {
                     $query->where('slug', $filterDomain['category']);
                 });
             })->get();
@@ -39,10 +39,11 @@ class BlogRepositoryImpl extends Repository implements BlogRepository
     {
         return $this->model
             ->when(!empty($filterDomain['category']), function ($query) use ($filterDomain) {
-                $query->whereHas('blogCategory', function ($query) use ($filterDomain) {
+                $query->whereHas('categories', function ($query) use ($filterDomain) {
                     $query->where('slug', $filterDomain['category']);
                 });
-            })->latest('created_at')
+            })
+            ->latest('created_at')
             ->paginate($filterDomain['limit'] ?? 5);
     }
 }

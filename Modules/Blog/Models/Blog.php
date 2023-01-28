@@ -9,7 +9,10 @@ use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Reference\Models\Categorizable;
+use Modules\Reference\Models\Category;
 
 class Blog extends Model
 {
@@ -38,13 +41,19 @@ class Blog extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    public function blogCategory(): BelongsTo
-    {
-        return $this->belongsTo(BlogCategory::class);
-    }
-
     public function headlineImage(): BelongsTo
     {
         return $this->belongsTo(File::class, 'headline_image_id');
+    }
+
+
+    /**
+     * Get all of the categories for the blog.
+     *
+     * @return MorphToMany
+     */
+    public function categories(): MorphToMany
+    {
+        return $this->morphToMany(Category::class, 'categorizable')->withTimestamps();
     }
 }

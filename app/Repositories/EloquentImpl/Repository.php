@@ -20,7 +20,12 @@ abstract class Repository
      */
     public function getAll($filterDomain = null)
     {
-        return $this->model->get();
+        $builder = $this->model;
+
+        if (!empty($filterDomain['where'])) {
+            $builder = $builder->where($filterDomain['where']);
+        }
+        return $builder->get();
     }
 
     /**

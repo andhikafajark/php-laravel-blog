@@ -9,21 +9,21 @@
             @method('put')
 
             <div class="mb-4">
-                <label for="blog_category_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Blog
-                    Category</label>
-                <select id="blog_category_id" name="blog_category_id"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option disabled selected>Choose</option>
+                <label for="categories"
+                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Category</label>
+                <select id="categories" name="categories[]"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 select2"
+                        required multiple data-placeholder="Choose">
 
-                    @forelse($blogCategories as $blogCategory)
+                    @forelse($categories as $item)
 
                         <option
-                            value="{{ $blogCategory->id }}" {{ $blog->blog_category_id === $blogCategory->id ? 'selected' : '' }}>{{ $blogCategory->title }}</option>
+                            value="{{ $item->id }}" {{ $blog->categories->contains($item->id) ? 'selected' : '' }}>{{ $item->title }}</option>
 
                     @empty @endforelse
 
                 </select>
-                <label id="blog_category_id-error" class="error text-xs text-red-500" for="blog_category_id"></label>
+                <label id="categories-error" class="error text-xs text-red-500" for="categories"></label>
             </div>
             <div class="mb-4">
                 <label for="title"

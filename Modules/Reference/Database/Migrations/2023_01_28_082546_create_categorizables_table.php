@@ -12,18 +12,16 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('blog_categories', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('title')->comment('Unique');
-            $table->string('slug')->comment('Unique');
+        Schema::create('categorizables', function (Blueprint $table) {
+            $table->id();
+            $table->foreignUuid('category_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->uuid('categorizable_id');
+            $table->string('categorizable_type');
             $table->uuid('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users')->cascadeOnUpdate()->nullOnDelete();
             $table->uuid('updated_by')->nullable();
             $table->foreign('updated_by')->references('id')->on('users')->cascadeOnUpdate()->nullOnDelete();
-            $table->uuid('deleted_by')->nullable();
-            $table->foreign('deleted_by')->references('id')->on('users')->cascadeOnUpdate()->nullOnDelete();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -34,6 +32,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('blog_categories');
+        Schema::dropIfExists('categorizables');
     }
 };

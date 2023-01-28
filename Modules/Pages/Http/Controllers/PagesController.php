@@ -9,8 +9,8 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Modules\Blog\Models\Blog;
-use Modules\Blog\Services\BlogCategoryService;
 use Modules\Blog\Services\BlogService;
+use Modules\Reference\Services\CategoryService;
 
 class PagesController extends Controller
 {
@@ -18,11 +18,11 @@ class PagesController extends Controller
      * Create a new controller instance.
      */
     public function __construct(
-        private BlogService         $blogService,
-        private BlogCategoryService $blogCategoryService,
-        private string              $_route = 'pages.',
-        private string              $_routeView = '',
-        private string              $_title = '',
+        private BlogService     $blogService,
+        private CategoryService $categoryService,
+        private string          $_route = 'pages.',
+        private string          $_routeView = '',
+        private string          $_title = '',
     )
     {
         parent::__construct();
@@ -31,7 +31,11 @@ class PagesController extends Controller
             'route' => $this->_route,
             'title' => $this->_title,
             'blogs' => $this->blogService->getAll(),
-            'blogCategories' => $this->blogCategoryService->getAll()
+            'categories' => $this->categoryService->getAll([
+                'where' => [
+                    'type' => 'blog'
+                ]
+            ])
         ]);
     }
 
@@ -69,7 +73,7 @@ class PagesController extends Controller
      */
     public function blog(Request $request, Blog $blog): View|Factory|Application
     {
-        $blog = $blog->with(['creator', 'blogCategory'])->findOrFail($blog->id);
+        $blog = $blog->with(['creator', 'categories'])->findOrFail($blog->id);
 
         $data = [
             'title' => 'Blog',

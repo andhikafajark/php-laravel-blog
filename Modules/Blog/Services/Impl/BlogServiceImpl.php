@@ -42,7 +42,12 @@ class BlogServiceImpl extends Service implements BlogService
 
             $createRequest['headline_image_id'] = $file->id;
 
-            return $this->blogRepository->create($createRequest);
+            return $this->blogRepository->create($createRequest)
+                ->categories()
+                ->sync(array_fill_keys($createRequest['categories'], [
+                    'created_by' => auth()->id(),
+                    'updated_by' => auth()->id()
+                ]));
         } catch (Exception $e) {
             File::delete($file->path . $file->hash_name);
 
@@ -74,7 +79,12 @@ class BlogServiceImpl extends Service implements BlogService
                 $updateRequest['headline_image_id'] = $file->id;
             }
 
-            return $this->blogRepository->update($updateRequest);
+            return $this->blogRepository->update($updateRequest)
+                ->categories()
+                ->sync(array_fill_keys($updateRequest['categories'], [
+                    'created_by' => auth()->id(),
+                    'updated_by' => auth()->id()
+                ]));
         } catch (Exception $e) {
             if (!empty($updateRequest['headline_image'])) File::delete($file->path . $file->hash_name);
 
@@ -93,6 +103,8 @@ class BlogServiceImpl extends Service implements BlogService
     {
         $blog = $this->blogRepository->getOne(['id' => $deleteRequest['id']]);
 
+        $blog->categories()->sync([]);
+
         $this->blogRepository->delete(['id' => $deleteRequest['id']]);
 
         return $this->fileService->delete(['id' => $blog->headline_image_id]);
@@ -108,10 +120,13 @@ class BlogServiceImpl extends Service implements BlogService
      */
     public function getDatatable($datatableRequest, $options = [])
     {
-        $query = $this->blogRepository->query();
+        $query = $this->blogRepository->query()->with('categories');
 
         return DataTables::of($query)
             ->addIndexColumn()
+            ->addColumn('category', function ($data) {
+                return $data->categories->pluck('title')->join(', ');
+            })
             ->addColumn('headline_image', function ($data) use ($options) {
                 return view($options['module']->getLowerName() . '::' . $options['routeView'] . 'components.headline-image-datatables', compact('data'));
             })

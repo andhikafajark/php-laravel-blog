@@ -5,13 +5,9 @@ namespace Modules\Blog\Providers;
 use Illuminate\Support\ServiceProvider;
 use Modules\Blog\Models\Blog;
 use Modules\Blog\Models\BlogCategory;
-use Modules\Blog\Repositories\BlogCategoryRepository;
 use Modules\Blog\Repositories\BlogRepository;
-use Modules\Blog\Repositories\EloquentImpl\BlogCategoryRepositoryImpl;
 use Modules\Blog\Repositories\EloquentImpl\BlogRepositoryImpl;
-use Modules\Blog\Services\BlogCategoryService;
 use Modules\Blog\Services\BlogService;
-use Modules\Blog\Services\Impl\BlogCategoryServiceImpl;
 use Modules\Blog\Services\Impl\BlogServiceImpl;
 
 class BlogServiceProvider extends ServiceProvider
@@ -34,10 +30,6 @@ class BlogServiceProvider extends ServiceProvider
         Blog::class => Blog::class,
         BlogRepository::class => BlogRepositoryImpl::class,
         BlogService::class => BlogServiceImpl::class,
-        // BlogCategory
-        BlogCategory::class => BlogCategory::class,
-        BlogCategoryRepository::class => BlogCategoryRepositoryImpl::class,
-        BlogCategoryService::class => BlogCategoryServiceImpl::class,
     ];
 
     /**
@@ -126,10 +118,6 @@ class BlogServiceProvider extends ServiceProvider
             Blog::class,
             BlogRepository::class,
             BlogService::class,
-            // BlogCategory
-            BlogCategory::class,
-            BlogCategoryRepository::class,
-            BlogCategoryService::class,
         ];
     }
 
