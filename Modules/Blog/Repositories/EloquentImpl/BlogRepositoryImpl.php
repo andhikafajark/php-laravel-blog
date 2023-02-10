@@ -46,4 +46,15 @@ class BlogRepositoryImpl extends Repository implements BlogRepository
             ->latest('created_at')
             ->paginate($filterDomain['limit'] ?? 5);
     }
+
+    /**
+     * Create a comment resource from DB.
+     *
+     * @param $blogDomain
+     * @return mixed
+     */
+    public function createComment($blogDomain)
+    {
+        return $this->getOne($blogDomain)->comments()->create($blogDomain['comment']);
+    }
 }

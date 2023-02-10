@@ -17,4 +17,6 @@ interface BlogRepository
     public function query();
 
     public function getAllWithPagination($filterDomain = null);
+
+    public function createComment($blogDomain);
 }

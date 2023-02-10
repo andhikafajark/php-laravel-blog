@@ -12,6 +12,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Modules\Blog\Http\Requests\Blog\CommentRequest;
 use Modules\Blog\Http\Requests\Blog\CreateRequest;
 use Modules\Blog\Http\Requests\Blog\UpdateRequest;
 use Modules\Blog\Models\Blog;
@@ -211,6 +212,42 @@ class BlogController extends Controller
                 'message' => 'Delete Data Success',
                 'data' => null
             ], Response::HTTP_OK);
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            Log::exception($e, __METHOD__);
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Store a new comment resource in storage.
+     *
+     * @param CommentRequest $request
+     * @param Blog $blog
+     * @return JsonResponse
+     * @throws Exception
+     */
+    public function comment(CommentRequest $request, Blog $blog): JsonResponse
+    {
+        try {
+            DB::beginTransaction();
+
+            $data = [
+                'id' => $blog->id,
+                'comment' => $request->validated()
+            ];
+
+            $this->blogService->createComment($data);
+
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Create Comment Success',
+                'data' => null
+            ], Response::HTTP_CREATED);
         } catch (Exception $e) {
             DB::rollBack();
 

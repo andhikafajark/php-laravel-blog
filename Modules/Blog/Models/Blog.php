@@ -2,6 +2,7 @@
 
 namespace Modules\Blog\Models;
 
+use App\Models\Comment;
 use App\Models\File;
 use App\Models\User;
 use App\Traits\ByUser;
@@ -9,9 +10,9 @@ use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Modules\Reference\Models\Categorizable;
 use Modules\Reference\Models\Category;
 
 class Blog extends Model
@@ -46,6 +47,15 @@ class Blog extends Model
         return $this->belongsTo(File::class, 'headline_image_id');
     }
 
+    /**
+     * Get all of the blog's comments.
+     *
+     * @return MorphMany
+     */
+    public function comments(): MorphMany
+    {
+        return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id')->latest()->with('children');
+    }
 
     /**
      * Get all of the categories for the blog.

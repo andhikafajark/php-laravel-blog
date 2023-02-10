@@ -139,4 +139,16 @@ class BlogServiceImpl extends Service implements BlogService
             ->rawColumns(['is_active', 'action'])
             ->toJson();
     }
+
+    /**
+     * Create a blog comment.
+     *
+     * @param $createRequest
+     * @return mixed
+     * @throws Exception
+     */
+    public function createComment($createRequest)
+    {
+        return $this->blogRepository->createComment($createRequest);
+    }
 }

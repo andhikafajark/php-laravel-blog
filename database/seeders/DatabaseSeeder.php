@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             FileSeeder::class,
             ReferenceDatabaseSeeder::class,
-            BlogDatabaseSeeder::class
+            BlogDatabaseSeeder::class,
+            CommentSeeder::class
         ]);
     }
 }

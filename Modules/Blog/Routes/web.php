@@ -16,6 +16,9 @@ use Modules\Blog\Http\Controllers\BlogController;
 
 Route::prefix('admin')->group(function () {
     // Blog
+    Route::name('blog.')->group(function () {
+        Route::match(['put', 'patch'], 'blog/{blog}/comment', [BlogController::class, 'comment'])->name('comment');
+    });
     Route::resource('blog', BlogController::class, [
         'except' => ['show']
     ]);

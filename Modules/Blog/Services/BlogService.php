@@ -17,4 +17,6 @@ interface BlogService
     public function getAllWithPagination($indexRequest = null);
 
     public function getDatatable($datatableRequest, $options = []);
+
+    public function createComment($createRequest);
 }

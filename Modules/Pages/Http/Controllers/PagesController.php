@@ -73,7 +73,7 @@ class PagesController extends Controller
      */
     public function blog(Request $request, Blog $blog): View|Factory|Application
     {
-        $blog = $blog->with(['creator', 'categories'])->findOrFail($blog->id);
+        $blog = $blog->with(['categories', 'creator', 'comments'])->findOrFail($blog->id);
 
         $data = [
             'title' => 'Blog',
